@@ -53,13 +53,50 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                String nama = etNama.getText().toString();
-                String alamat = etAlamat.getText().toString();
-                String hp = etHP.getText().toString();
-                tvHasil.setText("Nama" + "\t\t\t\t\t: " + nama + "\n" + "Jenis Kelamin" + "\t: " + hasil + "\n" + "Alamat" + "\t\t\t\t: " + alamat + "\n" + "Kelas" + "\t\t\t\t\t: " + spKelas.getSelectedItem().toString() + "\n" + "Nomor HP" + "\t\t\t: " + hp);
+                if (isValid()) {
+                    String nama = etNama.getText().toString();
+                    String alamat = etAlamat.getText().toString();
+                    String hp = etHP.getText().toString();
+                    tvHasil.setText("Nama" + "\t\t\t\t\t: " + nama + "\n" + "Jenis Kelamin" + "\t: " + hasil + "\n" + "Alamat" + "\t\t\t\t: " + alamat + "\n" + "Kelas" + "\t\t\t\t\t: " + spKelas.getSelectedItem().toString() + "\n" + "Nomor HP" + "\t\t\t: " + hp);
+                }
                 doClick();
             }
         });
+    }
+
+    private boolean isValid() {
+        boolean valid = true;
+
+        String nama = etNama.getText().toString();
+        String alamat = etAlamat.getText().toString();
+        String hp = etHP.getText().toString();
+
+        if (nama.isEmpty()) {
+            etNama.setError("Nama belum diisi");
+            valid = false;
+        } else if (nama.length() < 3) {
+            etNama.setError("Nama minimal 3 karakter");
+            valid = false;
+        } else {
+            etNama.setError(null);
+        }
+
+        if (alamat.isEmpty()) {
+            etAlamat.setError("Alamat belum diisi");
+            valid = false;
+        } else if (alamat.length() < 4) {
+            etAlamat.setError("Alamat minimal 4 karakter");
+        } else {
+            etAlamat.setError(null);
+        }
+
+        if (hp.isEmpty()) {
+            etHP.setError("Nomor HP belum diisi");
+        } else {
+            etHP.setError(null);
+        }
+
+        return valid;
     }
 
     private void doClick() {
@@ -97,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (hasilcb.length() == startlen) hasilcb += "Tidak memilih jadwal";
         tvHasil2.setText(hasilcb);
-        tvHasil3.setText("Pembayaran\t\t : " + jum + " x " + "30.000" + " x 4 " + " = Rp." + jum * 30000 + "/bulan");
+        tvHasil3.setText("Pembayaran\t\t : " + jum + " x " + "30.000" + " x 4 " + " = Rp." + jum * 30000 * 4 + "/bulan");
 
     }
 }
