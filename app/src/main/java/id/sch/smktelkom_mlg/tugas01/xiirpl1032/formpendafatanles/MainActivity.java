@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etNama, etAlamat, etHP;
     RadioButton rbPria, rbWanita;
     Button bDaftar;
-    TextView tvHasil, tvHasil2;
+    TextView tvHasil, tvHasil2, tvHasil3;
     Spinner spKelas;
     CheckBox cbSenin, cbSelasa, cbRabu, cbKamis, cbJumat, cbSabtu, cbMinggu;
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         bDaftar = (Button) findViewById(R.id.buttondaftar);
         tvHasil = (TextView) findViewById(R.id.textViewHasil);
         tvHasil2 = (TextView) findViewById(R.id.textViewHasil2);
+        tvHasil3 = (TextView) findViewById(R.id.textViewHasil3);
         rbPria = (RadioButton) findViewById(R.id.pria);
         rbWanita = (RadioButton) findViewById(R.id.wanita);
         spKelas = (Spinner) findViewById(R.id.spinnerkelas);
@@ -63,24 +64,40 @@ public class MainActivity extends AppCompatActivity {
 
     private void doClick() {
         String hasilcb = "Jadwal Les\t\t: ";
+        int jum = 0;
         int startlen = hasilcb.length();
-        if (cbSenin.isChecked())
+        if (cbSenin.isChecked()) {
+            jum += 1;
             hasilcb += cbSenin.getText() + ", ";
-        if (cbSelasa.isChecked())
+        }
+        if (cbSelasa.isChecked()) {
+            jum += 1;
             hasilcb += cbSelasa.getText() + ", ";
-        if (cbRabu.isChecked())
+        }
+        if (cbRabu.isChecked()) {
+            jum += 1;
             hasilcb += cbRabu.getText() + ", ";
-        if (cbKamis.isChecked())
+        }
+        if (cbKamis.isChecked()) {
+            jum += 1;
             hasilcb += cbKamis.getText() + ", ";
-        if (cbJumat.isChecked())
+        }
+        if (cbJumat.isChecked()) {
+            jum += 1;
             hasilcb += cbJumat.getText() + ", ";
-        if (cbSabtu.isChecked())
+        }
+        if (cbSabtu.isChecked()) {
+            jum += 1;
             hasilcb += cbSabtu.getText() + ", ";
-        if (cbMinggu.isChecked())
+        }
+        if (cbMinggu.isChecked()) {
+            jum += 1;
             hasilcb += cbMinggu.getText() + ", ";
+        }
 
         if (hasilcb.length() == startlen) hasilcb += "Tidak memilih jadwal";
         tvHasil2.setText(hasilcb);
+        tvHasil3.setText("Pembayaran\t\t : " + jum + " x " + "30.000" + " x 4 " + " = Rp." + jum * 30000 + "/bulan");
 
     }
 }
